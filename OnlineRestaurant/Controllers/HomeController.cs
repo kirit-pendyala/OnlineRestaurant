@@ -23,6 +23,21 @@ namespace OnlineRestaurant.Controllers
             return View();
         }
 
+        public IActionResult Customer()
+        {
+            return View();
+        }
+
+        public IActionResult FrontDesk()
+        {
+            return View();
+        }
+
+        public IActionResult Kitchen()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
