@@ -31,15 +31,6 @@ namespace OnlineRestaurant
 
         }
 
-        /*
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddScoped<IEmployeeRepo, SQLEmployeeRepo>();
-        }96
-        */
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

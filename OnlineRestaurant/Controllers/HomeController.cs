@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OnlineRestaurant.Models;
 
-namespace OnlineRestaurant.Controllers
+namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
+
+    //namespace DevExtreme.NETCore.Demos.Controllers
 {
     public class HomeController : Controller
     {
