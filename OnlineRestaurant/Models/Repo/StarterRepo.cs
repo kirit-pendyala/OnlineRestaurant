@@ -12,5 +12,10 @@ namespace OnlineRestaurant.Models.Repo
         {
             return _starter.FirstOrDefault(e => e.Id == Id);
         }
+
+        public IEnumerable<Starter> GetAllStarters()
+        {
+            return _starter;
+        }
     }
 }

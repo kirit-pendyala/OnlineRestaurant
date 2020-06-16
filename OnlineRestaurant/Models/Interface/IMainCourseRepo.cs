@@ -8,5 +8,9 @@ namespace OnlineRestaurant.Models
     public interface IMainCourseRepo
     {
         MainCourse GetMainCourse(int Id);
+
+
+        IEnumerable<MainCourse> GetAllMainCourses();
+
     }
 }

@@ -8,6 +8,12 @@ namespace OnlineRestaurant.Models.Repo
     public class MainCourseRepo :IMainCourseRepo
     {
         private List<MainCourse> _mainCourse;
+
+        public IEnumerable<MainCourse> GetAllMainCourses()
+        {
+            return _mainCourse;   
+        }
+
         public MainCourse GetMainCourse(int Id)
         {
             return _mainCourse.FirstOrDefault(e => e.Id == Id);

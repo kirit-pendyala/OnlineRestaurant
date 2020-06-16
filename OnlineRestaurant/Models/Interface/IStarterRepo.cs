@@ -8,5 +8,9 @@ namespace OnlineRestaurant.Models
     public interface IStarterRepo
     {
         Starter GetStarter(int Id);
+
+
+        IEnumerable<Starter> GetAllStarters();
+
     }   
 }

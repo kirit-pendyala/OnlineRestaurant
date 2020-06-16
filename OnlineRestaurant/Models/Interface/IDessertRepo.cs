@@ -8,5 +8,8 @@ namespace OnlineRestaurant.Models
     public interface IDessertRepo
     {
         Dessert GetDessert(int Id);
+
+
+        IEnumerable<Dessert> GetAllDesserts();
     }
 }
