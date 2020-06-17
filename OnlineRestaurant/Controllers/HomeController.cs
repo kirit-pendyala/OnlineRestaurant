@@ -19,14 +19,17 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         private readonly IStarterRepo _starterRepo;
         private readonly IMainCourseRepo _mainCourseRepo;
         private readonly IDessertRepo _dessertRepo;
+        private readonly IDishesRepo _dishesRepo;
 
         public HomeController(IStarterRepo starterRepo
                              ,IMainCourseRepo mainCourseRepo
-                             ,IDessertRepo dessertRepo )
+                             ,IDessertRepo dessertRepo
+                             ,IDishesRepo dishesRepo)
         {
             _starterRepo = starterRepo;
             _mainCourseRepo = mainCourseRepo;
             _dessertRepo = dessertRepo;
+            _dishesRepo = dishesRepo;
         }
 
 
@@ -42,7 +45,8 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
 
         public IActionResult Customer()
         {
-            return View();
+            var model = _dishesRepo.GetAllDishes();
+            return View(model);
         }
 
         public IActionResult FrontDesk()

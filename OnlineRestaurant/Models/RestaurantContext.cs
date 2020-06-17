@@ -6,17 +6,18 @@ namespace OnlineRestaurant.Models
 {
     public partial class RestaurantContext : DbContext
     {
-     
+       
 
         public RestaurantContext(DbContextOptions<RestaurantContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Dessert> Dessert { get; set; }
-        public DbSet<MainCourse> MainCourse { get; set; }
-        public DbSet<Restaurants> Restaurants { get; set; }
-        public DbSet<Starter> Starter { get; set; }
+        public virtual DbSet<Dessert> Dessert { get; set; }
+        public virtual DbSet<Dishes> Dishes { get; set; }
+        public virtual DbSet<MainCourse> MainCourse { get; set; }
+        public virtual DbSet<Restaurants> Restaurants { get; set; }
+        public virtual DbSet<Starter> Starter { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -41,6 +42,22 @@ namespace OnlineRestaurant.Models
                 entity.Property(e => e.Dname)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Dishes>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.Property(e => e.Calories).HasColumnName("calories");
+
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Price).HasColumnName("price");
             });
 
             modelBuilder.Entity<MainCourse>(entity =>
