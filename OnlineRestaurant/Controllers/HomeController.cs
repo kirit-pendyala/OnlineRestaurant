@@ -7,18 +7,54 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OnlineRestaurant.Models;
 
-namespace OnlineRestaurant.Controllers
+namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
+
+    //namespace DevExtreme.NETCore.Demos.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        private readonly IStarterRepo _starterRepo;
+        private readonly IMainCourseRepo _mainCourseRepo;
+        private readonly IDessertRepo _dessertRepo;
+        private readonly IDishesRepo _dishesRepo;
+
+        public HomeController(IStarterRepo starterRepo
+                             ,IMainCourseRepo mainCourseRepo
+                             ,IDessertRepo dessertRepo
+                             ,IDishesRepo dishesRepo)
         {
-            _logger = logger;
+            _starterRepo = starterRepo;
+            _mainCourseRepo = mainCourseRepo;
+            _dessertRepo = dessertRepo;
+            _dishesRepo = dishesRepo;
         }
 
+
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Customer()
+        {
+            var model = _dishesRepo.GetAllDishes();
+            return View(model);
+        }
+
+        public IActionResult FrontDesk()
+        {
+            return View();
+        }
+
+        public IActionResult Kitchen()
         {
             return View();
         }
@@ -33,5 +69,30 @@ namespace OnlineRestaurant.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+        public ViewResult StarterMenu()
+        {
+            var model = _starterRepo.GetAllStarters();
+            return View(model);
+        }
+
+        public ViewResult MainCourseMenu()
+        {
+            var model = _mainCourseRepo.GetAllMainCourses();
+            return View(model);
+        }
+
+        public ViewResult DessertMenu()
+        {
+            var model = _dessertRepo.GetAllDesserts();
+            return View(model);
+        }
+
+
+
+
+
     }
 }

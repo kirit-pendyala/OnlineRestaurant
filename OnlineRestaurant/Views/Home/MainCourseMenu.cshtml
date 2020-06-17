@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MainCourse>
+
+@{
+    ViewData["Title"] = "Main Course Menu";
+}
+
+
+    <div class="card-footer text-center">
+        <a asp-action="index" asp-controller="home" class="btn btn-primary" >Back to Menu</a>
+    </div>
+
+
+
+<div class="card-deck">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Calories</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <thead>
+                <div class=" d-lg-table">
+                    <tr>
+                        <div class="container col-lg-4">
+                            <td>
+                                @item.Mname
+                            </td>
+                        </div>
+
+                        <div class=" container col-lg-4">
+                            <td>
+                                @item.Mprice
+                            </td>
+                        </div>
+
+                        <div class="container col-lg-4">
+                            <td>
+                                @item.Mcalories
+                            </td>
+                        </div>
+
+                    </tr>
+                </div>
+            </thead>
+        }
+    </table>
+</div>
+
+
+
+
+
+
+
+
