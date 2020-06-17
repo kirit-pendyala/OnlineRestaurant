@@ -14,11 +14,6 @@ namespace OnlineRestaurant.Models
         {
             this.context = context;
         }
-
-
-
-
-
         
         public IEnumerable<Starter> GetAllStarters()
         {

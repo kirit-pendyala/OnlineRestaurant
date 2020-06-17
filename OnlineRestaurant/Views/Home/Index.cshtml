@@ -14,24 +14,47 @@
 
 
 <div class="card-deck">
-    @foreach (var item in Model)
-    {     
-        <table>
+    <table class="table">
+        <thead class="thead-dark">
             <tr>
-                <td>
-                    @item.Sname
-                </td>
-
-                <td>
-                    @item.Sprice
-                </td>
-
-                <td>
-                    @item.Scalories
-                </td>
-
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Calories</th>
             </tr>
-            
-        </table>
-    }
+        </thead>
+        @foreach (var item in Model)
+        {
+            <thead>
+                <div class=" d-lg-table">
+                    <tr>
+                        <div class="container col-lg-4">
+                            <td>
+                                @item.Sname
+                            </td>
+                        </div>
+
+                        <div class=" container col-lg-4">
+                            <td>
+                                @item.Sprice
+                            </td>
+                        </div>
+
+                        <div class="container col-lg-4">
+                            <td>
+                                @item.Scalories
+                            </td>
+                        </div>
+
+                    </tr>
+                </div>
+            </thead>
+        }
+    </table>
 </div>
+
+
+
+
+
+
+
