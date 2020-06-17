@@ -15,14 +15,24 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        private readonly IStarterRepo _starterRepo;
+
+        public HomeController(IStarterRepo starterRepo)
         {
-            _logger = logger;
+            _starterRepo = starterRepo;
         }
+
+
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         public IActionResult Index()
         {
-            return View();
+            var model = _starterRepo.GetAllStarters();
+            return View(model);
         }
 
         public IActionResult Customer()

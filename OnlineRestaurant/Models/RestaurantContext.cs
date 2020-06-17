@@ -6,19 +6,17 @@ namespace OnlineRestaurant.Models
 {
     public partial class RestaurantContext : DbContext
     {
-        public RestaurantContext()
-        {
-        }
+     
 
         public RestaurantContext(DbContextOptions<RestaurantContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Dessert> Dessert { get; set; }
-        public virtual DbSet<MainCourse> MainCourse { get; set; }
-        public virtual DbSet<Restaurants> Restaurants { get; set; }
-        public virtual DbSet<Starter> Starter { get; set; }
+        public DbSet<Dessert> Dessert { get; set; }
+        public DbSet<MainCourse> MainCourse { get; set; }
+        public DbSet<Restaurants> Restaurants { get; set; }
+        public DbSet<Starter> Starter { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

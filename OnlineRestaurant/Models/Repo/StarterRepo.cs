@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OnlineRestaurant.Models.Repo
+namespace OnlineRestaurant.Models
 {
     public class StarterRepo : IStarterRepo
     {
-        private List<Starter> _starter;
-        public Starter GetStarter(int Id)
+
+        private readonly RestaurantContext context;
+
+        public StarterRepo(RestaurantContext context)
         {
-            return _starter.FirstOrDefault(e => e.Id == Id);
+            this.context = context;
         }
 
+
+
+
+
+        
         public IEnumerable<Starter> GetAllStarters()
         {
-            return _starter;
+            return context.Starter;
         }
     }
 }
