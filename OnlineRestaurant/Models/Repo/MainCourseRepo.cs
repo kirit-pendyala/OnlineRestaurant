@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OnlineRestaurant.Models.Repo
+namespace OnlineRestaurant.Models
 {
     public class MainCourseRepo :IMainCourseRepo
     {
-        private List<MainCourse> _mainCourse;
+        private readonly RestaurantContext context;
+
+        public MainCourseRepo(RestaurantContext context)
+        {
+            this.context = context;
+        }
 
         public IEnumerable<MainCourse> GetAllMainCourses()
         {
-            return _mainCourse;   
-        }
-
-        public MainCourse GetMainCourse(int Id)
-        {
-            return _mainCourse.FirstOrDefault(e => e.Id == Id);
+            return context.MainCourse;
         }
     }
 }

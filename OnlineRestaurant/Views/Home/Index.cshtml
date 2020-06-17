@@ -1,60 +1,8 @@
-﻿@model IEnumerable<Starter>
+﻿
+<h1> Menu</h1>
 
-
-
-@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome to Online Restaurant </h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="card-footer text-center">
+    <a asp-action="startermenu" asp-controller="home" class="btn btn-primary">Starter Menu</a>
+    <a asp-controller="home" asp-action="maincoursemenu" class="btn btn-primary">Main Course</a>
+    <a asp-action="dessertmenu" asp-controller="home" class="btn btn-primary">Dessert</a>
 </div>
-
-
-
-<div class="card-deck">
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Calories</th>
-            </tr>
-        </thead>
-        @foreach (var item in Model)
-        {
-            <thead>
-                <div class=" d-lg-table">
-                    <tr>
-                        <div class="container col-lg-4">
-                            <td>
-                                @item.Sname
-                            </td>
-                        </div>
-
-                        <div class=" container col-lg-4">
-                            <td>
-                                @item.Sprice
-                            </td>
-                        </div>
-
-                        <div class="container col-lg-4">
-                            <td>
-                                @item.Scalories
-                            </td>
-                        </div>
-
-                    </tr>
-                </div>
-            </thead>
-        }
-    </table>
-</div>
-
-
-
-
-
-
-

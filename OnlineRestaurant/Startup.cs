@@ -29,6 +29,8 @@ namespace OnlineRestaurant
             services.AddDbContextPool<RestaurantContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddScoped<IStarterRepo, StarterRepo>();
+            services.AddScoped<IMainCourseRepo, MainCourseRepo>();
+            services.AddScoped<IDessertRepo, DessertRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

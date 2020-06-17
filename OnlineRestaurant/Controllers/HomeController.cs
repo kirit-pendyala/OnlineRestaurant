@@ -17,10 +17,16 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
 
 
         private readonly IStarterRepo _starterRepo;
+        private readonly IMainCourseRepo _mainCourseRepo;
+        private readonly IDessertRepo _dessertRepo;
 
-        public HomeController(IStarterRepo starterRepo)
+        public HomeController(IStarterRepo starterRepo
+                             ,IMainCourseRepo mainCourseRepo
+                             ,IDessertRepo dessertRepo )
         {
             _starterRepo = starterRepo;
+            _mainCourseRepo = mainCourseRepo;
+            _dessertRepo = dessertRepo;
         }
 
 
@@ -31,8 +37,7 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
 
         public IActionResult Index()
         {
-            var model = _starterRepo.GetAllStarters();
-            return View(model);
+            return View();
         }
 
         public IActionResult Customer()
@@ -60,5 +65,30 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+        public ViewResult StarterMenu()
+        {
+            var model = _starterRepo.GetAllStarters();
+            return View(model);
+        }
+
+        public ViewResult MainCourseMenu()
+        {
+            var model = _mainCourseRepo.GetAllMainCourses();
+            return View(model);
+        }
+
+        public ViewResult DessertMenu()
+        {
+            var model = _dessertRepo.GetAllDesserts();
+            return View(model);
+        }
+
+
+
+
+
     }
 }

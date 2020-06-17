@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OnlineRestaurant.Models.Repo
+namespace OnlineRestaurant.Models
 {
     public class DessertRepo : IDessertRepo
     {
-        private List<Dessert> _dessert;
-        public Dessert GetDessert(int Id)
-        {
-            return _dessert.FirstOrDefault(e => e.Id == Id);
-        }
+        private readonly RestaurantContext context;
 
+        public DessertRepo(RestaurantContext context)
+        {
+            this.context = context;
+        }
         
         public IEnumerable<Dessert> GetAllDesserts()
         {
-            return _dessert;
+            return context.Dessert;
         }
     }
 }

@@ -7,7 +7,6 @@ namespace OnlineRestaurant.Models
 {
     public class StarterRepo : IStarterRepo
     {
-
         private readonly RestaurantContext context;
 
         public StarterRepo(RestaurantContext context)

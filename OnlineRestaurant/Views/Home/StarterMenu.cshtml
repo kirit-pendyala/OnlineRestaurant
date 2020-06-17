@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Starter>
+
+@{
+    ViewData["Title"] = "Starter Menu";
+}
+
+
+<div class="card-deck">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Calories</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <thead>
+                <div class=" d-lg-table">
+                    <tr>
+                        <div class="container col-lg-4">
+                            <td>
+                                @item.Sname
+                            </td>
+                        </div>
+
+                        <div class=" container col-lg-4">
+                            <td>
+                                @item.Sprice
+                            </td>
+                        </div>
+
+                        <div class="container col-lg-4">
+                            <td>
+                                @item.Scalories
+                            </td>
+                        </div>
+
+                    </tr>
+                </div>
+            </thead>
+        }
+    </table>
+</div>
+
+
+
+
+
+
+
+
