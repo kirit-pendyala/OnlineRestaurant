@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineRestaurant.Models
 {
@@ -9,5 +10,9 @@ namespace OnlineRestaurant.Models
         public string Name { get; set; }
         public int? Price { get; set; }
         public int? Calories { get; set; }
+        [NotMapped]
+        public int count { get; set; }
+        [NotMapped]
+        public List<int> QuantityList { get; set; }
     }
 }

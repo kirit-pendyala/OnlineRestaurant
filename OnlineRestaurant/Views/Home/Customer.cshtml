@@ -4,53 +4,63 @@
     ViewData["Title"] = "Dessert Menu";
 }
 
+    <form enctype="multipart/form-data" asp-controller="Home" asp-action="Customer" method="post">
+        <div class="card-footer text-center">
+            <a asp-action="index" asp-controller="home" class="btn btn-primary">Back to Menu</a>
+        </div>
 
-<div class="card-footer text-center">
-    <a asp-action="index" asp-controller="home" class="btn btn-primary">Back to Menu</a>
-</div>
-
-<div class="card-deck">
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Calories</th>
-            </tr>
-        </thead>
-        @foreach (var item in Model)
-        {
-            <thead>
-                <div class=" d-lg-table">
+        <div class="card-deck">
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
-                        <div class="container col-lg-4">
-                            <td>
-                                @item.Name
-                            </td>
-                        </div>
-
-                        <div class=" container col-lg-4">
-                            <td>
-                                @item.Price
-                            </td>
-                        </div>
-
-                        <div class="container col-lg-4">
-                            <td>
-                                @item.Calories
-                            </td>
-                        </div>
-
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Calories</th>
+                        <th scope="col">Quantity</th>
                     </tr>
-                </div>
-            </thead>
-        }
-    </table>
-</div>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <thead>
+                        <div class=" d-lg-table">
+                            <tr>
+                                <div class="container .col-md-4">
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                </div>
 
+                                <div class=" container .col-md-3">
+                                    <td>
+                                        @item.Price
+                                    </td>
+                                </div>
 
+                                <div class="container .col-md-3">
+                                    <td>
+                                        @item.Calories
+                                    </td>
+                                </div>
+                                                                                                
+                                <div class="container .col-md-3">
+                                    <td>
+                                        <input type="number" value="0" min="0" id="input" name="@item.count" />
+                                    </td>
+                                </div>
+                                                                
+                            </tr>
+                        </div>
+                    </thead>
+                }
+            </table>
+        </div>
 
-
+        <div class="card-footer text-center">
+            <button class="btn btn-success" id="button" type="submit">Order</button>
+        </div>
+    </form>
+       
+}
 
 
 

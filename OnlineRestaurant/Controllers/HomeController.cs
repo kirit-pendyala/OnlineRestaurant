@@ -46,7 +46,18 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         public IActionResult Customer()
         {
             var model = _dishesRepo.GetAllDishes();
+
             return View(model);
+
+        }
+
+        [HttpPost]
+        public IActionResult Customer(Dishes dishes)
+        {
+            
+            //var model = dishes.GetAllDishes();
+            return View();
+
         }
 
         public IActionResult FrontDesk()
