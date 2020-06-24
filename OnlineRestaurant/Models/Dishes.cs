@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineRestaurant.Models
 {
-    public partial class Dishes
+    public class Dishes
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -12,7 +12,5 @@ namespace OnlineRestaurant.Models
         public int? Calories { get; set; }
         [NotMapped]
         public int count { get; set; }
-        [NotMapped]
-        public List<int> QuantityList { get; set; }
     }
 }

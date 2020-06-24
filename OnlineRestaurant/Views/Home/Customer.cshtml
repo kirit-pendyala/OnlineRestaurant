@@ -1,66 +1,73 @@
 ﻿@model IEnumerable<Dishes>
 
-@{
-    ViewData["Title"] = "Dessert Menu";
-}
 
-    <form enctype="multipart/form-data" asp-controller="Home" asp-action="Customer" method="post">
-        <div class="card-footer text-center">
-            <a asp-action="index" asp-controller="home" class="btn btn-primary">Back to Menu</a>
-        </div>
+<form asp-controller="Home" asp-action="CustomerPost" method="post">
+    <div class="card-footer text-center">
+        <a asp-action="index" asp-controller="home" class="btn btn-primary">Back to Menu</a>
+    </div>
 
-        <div class="card-deck">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Calories</th>
-                        <th scope="col">Quantity</th>
-                    </tr>
-                </thead>
-                @foreach (var item in Model)
-                {
-                    <thead>
-                        <div class=" d-lg-table">
-                            <tr>
-                                <div class="container .col-md-4">
-                                    <td>
-                                        @item.Name
-                                    </td>
-                                </div>
+    <div class="card-deck">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Calories</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+            </thead>
 
-                                <div class=" container .col-md-3">
-                                    <td>
-                                        @item.Price
-                                    </td>
-                                </div>
 
-                                <div class="container .col-md-3">
-                                    <td>
-                                        @item.Calories
-                                    </td>
-                                </div>
-                                                                                                
-                                <div class="container .col-md-3">
-                                    <td>
-                                        <input type="number" value="0" min="0" id="input" name="@item.count" />
-                                    </td>
-                                </div>
-                                                                
-                            </tr>
-                        </div>
-                    </thead>
+            @{ 
+                var list = Model.ToList();
+
+                for (var i = 0; i < list.Count(); i++)
+                    @*@foreach (var item in Model)*@
+                    {
+                        <thead>
+                            <div class=" d-lg-table">
+                                <tr>
+                                    <div class="container .col-md-4">
+                                        <td>
+                                            @list[i].Name
+                                        </td>
+                                    </div>
+
+                                    <div class=" container .col-md-3">
+                                        <td>
+                                            @list[i].Price
+                                        </td>
+                                    </div>
+
+                                    <div class="container .col-md-3">
+                                        <td>
+                                            @list[i].Calories
+                                        </td>
+                                    </div>
+
+                                    <div class="container .col-md-3">
+                                        <td>
+                                            <input asp-for="@list[i].count" type="number" value="0" min="0" id="count"  />
+                                        </td>
+                                    </div>
+
+                                </tr>
+                            </div>
+                        </thead>
+                    }
                 }
-            </table>
-        </div>
+        </table>
+    </div>
 
-        <div class="card-footer text-center">
-            <button class="btn btn-success" id="button" type="submit">Order</button>
-        </div>
-    </form>
-       
-}
+    <div class="card-footer text-center">
+        <button class="btn btn-success" id="button" type="submit">Order</button>
+    </div>
+</form>
+
+
+
+
+<
 
 
 
