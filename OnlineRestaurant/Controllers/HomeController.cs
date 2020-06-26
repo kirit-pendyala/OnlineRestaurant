@@ -42,11 +42,21 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public IActionResult Customer()
         {
+            //OrderDetailsViewModel orderDetailsViewModel = new OrderDetailsViewModel();
+            //orderDetailsViewModel.DishesList = _dishesRepo.GetAllDishes();
+            //List<Dishes> dishes = new List<Dishes>();
             var model = _dishesRepo.GetAllDishes();
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult CustomerPost(IList<Dishes> dishes)
+        {
+            
+            return View();
         }
 
         public IActionResult FrontDesk()
@@ -70,8 +80,6 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-
-
         public ViewResult StarterMenu()
         {
             var model = _starterRepo.GetAllStarters();
@@ -89,10 +97,6 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
             var model = _dessertRepo.GetAllDesserts();
             return View(model);
         }
-
-
-
-
 
     }
 }
