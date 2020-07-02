@@ -53,10 +53,10 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         }
 
         [HttpPost]
-        public IActionResult CustomerPost(IList<Dishes> dishes)
+        [ValidateAntiForgeryToken]
+        public ActionResult CustomerPost(string[] allVals)
         {
-            
-            return View();
+            return View();   
         }
 
         public IActionResult FrontDesk()
@@ -68,6 +68,13 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         {
             return View();
         }
+        
+        public ActionResult ModalPopUp()
+        {
+            return View();
+        }
+
+
 
         public IActionResult Privacy()
         {

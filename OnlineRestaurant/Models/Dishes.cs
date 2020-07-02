@@ -12,5 +12,8 @@ namespace OnlineRestaurant.Models
         public int? Calories { get; set; }
         [NotMapped]
         public int count { get; set; }
+
+        [NotMapped]
+        public Boolean isChecked { get; set; }
     }
 }

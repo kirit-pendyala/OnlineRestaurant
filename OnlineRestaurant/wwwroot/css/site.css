@@ -69,3 +69,23 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+
+
+
+$quantity-btn-color: #95d7fc;
+.product {
+    width: 30%;
+    margin: 30px;
+}
+
+.form-group {
+    width: 30%;
+    margin: 30px;
+    .glyphicon
+
+{
+    color: $quantity-btn-color;
+}
+}

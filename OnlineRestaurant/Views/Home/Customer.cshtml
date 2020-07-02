@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<Dishes>
 
-
 <form asp-controller="Home" asp-action="CustomerPost" method="post">
     <div class="card-footer text-center">
         <a asp-action="index" asp-controller="home" class="btn btn-primary">Back to Menu</a>
@@ -10,6 +9,7 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
+                    <th scope="col"></th>
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Calories</th>
@@ -18,57 +18,86 @@
             </thead>
 
 
-            @{ 
-                var list = Model.ToList();
-
+            @{
+                var list = Model.ToList(); 
                 for (var i = 0; i < list.Count(); i++)
-                    @*@foreach (var item in Model)*@
-                    {
-                        <thead>
-                            <div class=" d-lg-table">
-                                <tr>
-                                    <div class="container .col-md-4">
-                                        <td>
-                                            @list[i].Name
-                                        </td>
-                                    </div>
-
-                                    <div class=" container .col-md-3">
-                                        <td>
-                                            @list[i].Price
-                                        </td>
-                                    </div>
-
-                                    <div class="container .col-md-3">
-                                        <td>
-                                            @list[i].Calories
-                                        </td>
-                                    </div>
-
-                                    <div class="container .col-md-3">
-                                        <td>
-                                            <input asp-for="@list[i].count" type="number" value="0" min="0" id="count"  />
-                                        </td>
-                                    </div>
-
-                                </tr>
+                { 
+                <thead>
+                    <div class=" d-lg-table">
+                        <tr class="dishes">
+                            <div class="container .col-md-1">
+                                <td>
+                                    <input type ="checkbox" id="@list[i].Id" value="@list[i].Id" name="selected" >
+                                </td>
                             </div>
-                        </thead>
-                    }
+
+                            <div class="container .col-md-3">
+                                <td>
+                                    <label>@Html.DisplayFor(modelItem => list[i].Name)</label>
+                                </td>
+                            </div>
+
+                            <div class=" container .col-md-3">
+                                <td>
+                                    <label>@Html.DisplayFor(modelItem => list[i].Price)</label>
+                                </td>
+                            </div>
+
+                            <div class="container .col-md-3">
+                                <td>
+                                    <label>@Html.DisplayFor(modelItem => list[i].Calories)</label>
+                                </td>
+                            </div>
+
+                            <div class="container .col-md-2">
+                                <td>
+                                    <input type="number" id="count_@list[i].Id" min="0" />
+                                </td>
+                            </div>
+
+                        </tr>
+                    </div>
+                </thead>
                 }
+            }
         </table>
     </div>
 
     <div class="card-footer text-center">
-        <button class="btn btn-success" id="button" type="submit">Order</button>
+        <button id="button" class="btn btn-success" type="submit">Order</button>
     </div>
 </form>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+    $("#button").click(function () {
+        var rowID = 0;
+    var allVals = [];
+    $('input[type="checkbox"]:checked').each(function () {
+        rowID = $(this).val();
+           allVals.push(rowID+"_"+$('#count_'+rowID).val());
+        alert(allVals);
+    });
 
 
 
-<
-
-
-
-
+    $.ajax({
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        type: 'POST',
+        url: 'Home/CustomerPost',
+        data: JSON.stringify(allVals),
+        success: function (result) {
+            alert('success');
+        },
+        failure: function (response) {
+            alert('failure');
+        }
+    });
+});
+</script>
