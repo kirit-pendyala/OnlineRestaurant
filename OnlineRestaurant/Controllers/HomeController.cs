@@ -11,7 +11,6 @@ using OnlineRestaurant.Models;
 
 namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
 
-    //namespace DevExtreme.NETCore.Demos.Controllers
 {
     public class HomeController : Controller
     {
@@ -22,16 +21,19 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         private readonly IMainCourseRepo _mainCourseRepo;
         private readonly IDessertRepo _dessertRepo;
         private readonly IDishesRepo _dishesRepo;
+        private readonly ICustomerRepo _customerRepo;
 
         public HomeController(IStarterRepo starterRepo
                              ,IMainCourseRepo mainCourseRepo
                              ,IDessertRepo dessertRepo
-                             ,IDishesRepo dishesRepo)
+                             ,IDishesRepo dishesRepo
+                             ,ICustomerRepo customerRepo)
         {
             _starterRepo = starterRepo;
             _mainCourseRepo = mainCourseRepo;
             _dessertRepo = dessertRepo;
             _dishesRepo = dishesRepo;
+            _customerRepo = customerRepo;
         }
 
 
@@ -68,7 +70,13 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         {
             return View();
         }
-        
+
+        public IActionResult CustomerList()
+        {
+            var model = _customerRepo.GetAllCustomers();
+            return View(model);
+        }
+
         public ActionResult ModalPopUp()
         {
             return View();

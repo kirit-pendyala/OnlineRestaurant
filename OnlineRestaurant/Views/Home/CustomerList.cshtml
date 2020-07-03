@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Customer>
+
+@{
+    ViewData["Title"] = "Customer List";
+}
+
+
+<div class="card-footer text-center">
+    <a asp-action="index" asp-controller="home" class="btn btn-primary">Back to Menu</a>
+</div>
+
+<div class="card-deck">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Customer Mobile</th>
+                <th scope="col">Customer Email</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <thead>
+                <div class=" d-lg-table">
+                    <tr>
+                        <div class="container col-lg-4">
+                            <td>
+                                @item.CustomerName
+                            </td>
+                        </div>
+
+                        <div class=" container col-lg-4">
+                            <td>
+                                @item.CustomerMobile
+                            </td>
+                        </div>
+
+                        <div class="container col-lg-4">
+                            <td>
+                                @item.CustomerEmail
+                            </td>
+                        </div>
+
+                    </tr>
+                </div>
+            </thead>
+        }
+    </table>
+</div>
+
+
+
+
+
+
+
+
