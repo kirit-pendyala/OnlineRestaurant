@@ -1,4 +1,6 @@
 ﻿using System;
+
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -45,19 +47,17 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         [HttpGet]
         public IActionResult Customer()
         {
-            //OrderDetailsViewModel orderDetailsViewModel = new OrderDetailsViewModel();
-            //orderDetailsViewModel.DishesList = _dishesRepo.GetAllDishes();
-            //List<Dishes> dishes = new List<Dishes>();
             var model = _dishesRepo.GetAllDishes();
             return View(model);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CustomerPost(string[] allVals)
+        //[ValidateAntiForgeryToken]
+        public JsonResult CustomerPost(string[] values)
         {
-            return View();   
-        }
+            //return Json(new { Result = String.Format("Fist item in list: '{0}'", values[0]) });
+            return Json(true);   
+        }   
 
         public IActionResult FrontDesk()
         {
@@ -73,8 +73,6 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         {
             return View();
         }
-
-
 
         public IActionResult Privacy()
         {

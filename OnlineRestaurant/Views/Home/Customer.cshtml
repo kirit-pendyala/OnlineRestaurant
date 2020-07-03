@@ -71,27 +71,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="~/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <script type="text/javascript">
 
     $("#button").click(function () {
-        var rowID = 0;
+    var rowID = 0;
     var allVals = [];
     $('input[type="checkbox"]:checked').each(function () {
         rowID = $(this).val();
-           allVals.push(rowID+"_"+$('#count_'+rowID).val());
+        allVals.push(rowID+"_"+$('#count_'+rowID).val());
         alert(allVals);
     });
 
-
-
-    $.ajax({
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        type: 'POST',
-        url: 'Home/CustomerPost',
-        data: JSON.stringify(allVals),
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '/Home/CustomerPost',
+            traditional: true,
+            data: { values: allVals },
         success: function (result) {
             alert('success');
         },
