@@ -6,7 +6,7 @@ namespace OnlineRestaurant.Models
 {
     public partial class RestaurantContext : DbContext
     {
-
+        
         public RestaurantContext(DbContextOptions<RestaurantContext> options)
             : base(options)
         {
@@ -112,6 +112,8 @@ namespace OnlineRestaurant.Models
                 entity.ToTable("orderDetails");
 
                 entity.Property(e => e.ItemId).HasColumnName("itemId");
+
+                entity.Property(e => e.OrderDetailsId).HasColumnName("orderDetailsId");
 
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
             });

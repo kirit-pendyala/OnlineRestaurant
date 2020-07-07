@@ -14,11 +14,12 @@ namespace OnlineRestaurant.Models
         public OrderDetailsRepo(RestaurantContext context)
         {
             this.context = context;
+            _orderDetailsList = context.OrderDetails.ToList();
         }
 
         public OrderDetails Add(OrderDetails orderDetails)
         {
-            //orderDetails.Id = _orderDetailsList.Max(e => e.Id) + 1;
+            orderDetails.OrderDetailsId = _orderDetailsList.Max(e => e.OrderDetailsId) + 1;
             context.OrderDetails.Add(orderDetails);
             context.SaveChanges();
             return orderDetails;
