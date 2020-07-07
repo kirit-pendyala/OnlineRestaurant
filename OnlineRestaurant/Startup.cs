@@ -32,7 +32,8 @@ namespace OnlineRestaurant
             services.AddScoped<IMainCourseRepo, MainCourseRepo>();
             services.AddScoped<IDessertRepo, DessertRepo>();
             services.AddScoped<IDishesRepo, DishesRepo>();
-
+            services.AddScoped<ICustomerRepo, CustomerRepo>();
+            services.AddScoped<IOrderDetailsRepo, OrderDetailsRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
