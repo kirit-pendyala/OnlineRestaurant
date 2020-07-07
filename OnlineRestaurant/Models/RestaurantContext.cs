@@ -109,9 +109,7 @@ namespace OnlineRestaurant.Models
 
             modelBuilder.Entity<OrderDetails>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.CustomerId).HasColumnName("customerId");
+                entity.ToTable("orderDetails");
 
                 entity.Property(e => e.ItemId).HasColumnName("itemId");
 
