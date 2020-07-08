@@ -26,13 +26,15 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         private readonly IDishesRepo _dishesRepo;
         private readonly ICustomerRepo _customerRepo;
         private readonly IOrderDetailsRepo _orderDetailsRepo;
+        private readonly IOrdersRepo _ordersRepo;
 
         public HomeController(IStarterRepo starterRepo
                              ,IMainCourseRepo mainCourseRepo
                              ,IDessertRepo dessertRepo
                              ,IDishesRepo dishesRepo
                              ,ICustomerRepo customerRepo
-                             ,IOrderDetailsRepo orderDetailsRepo)
+                             ,IOrderDetailsRepo orderDetailsRepo
+                             ,IOrdersRepo ordersRepo)
         {
             _starterRepo = starterRepo;
             _mainCourseRepo = mainCourseRepo;
@@ -40,6 +42,7 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
             _dishesRepo = dishesRepo;
             _customerRepo = customerRepo;
             _orderDetailsRepo = orderDetailsRepo;
+            _ordersRepo = ordersRepo;
         }
 
 
@@ -63,21 +66,25 @@ namespace DevExtreme.NETCore.Demos.OnlineRestaurant.Controllers
         //[ValidateAntiForgeryToken]
         public JsonResult CustomerPost(string[] values)
         {
+            Orders newOrder = new Orders();
+            newOrder.CustomerId = 2;
+            newOrder.Status = "Pending";
+            bool result = _ordersRepo.Add(newOrder);
             List<Int32> itemId = new List<Int32>();
             List<Int32> itemCount = new List<Int32>();
+            
             for (int i = 0; i < values.Length; i++)
             {
                 var items = values[i].Split('_');
                 itemId.Add(Int32.Parse(items[0]));
                 itemCount.Add(Int32.Parse(items[1]));
             }
-            List<Int32> ite = itemId.ToList();
-            List<Int32> itc = itemCount.ToList();
             int b = 0;
             foreach (var item in itemId)
             {
                 OrderDetails od = new OrderDetails();
                 od.ItemId = item;
+                od.OrderId = newOrder.Id;
                 od.Quantity = itemCount[b++];
                 _orderDetailsRepo.Add(od);
             }

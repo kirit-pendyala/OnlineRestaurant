@@ -19,7 +19,7 @@ namespace OnlineRestaurant.Models
 
         public OrderDetails Add(OrderDetails orderDetails)
         {
-            orderDetails.OrderDetailsId = _orderDetailsList.Max(e => e.OrderDetailsId) + 1;
+            //orderDetails.OrderDetailsId = _orderDetailsList.Max(e => e.OrderDetailsId) + 1;
             context.OrderDetails.Add(orderDetails);
             context.SaveChanges();
             return orderDetails;

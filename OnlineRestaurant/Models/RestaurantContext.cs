@@ -6,7 +6,8 @@ namespace OnlineRestaurant.Models
 {
     public partial class RestaurantContext : DbContext
     {
-        
+    
+
         public RestaurantContext(DbContextOptions<RestaurantContext> options)
             : base(options)
         {
@@ -16,8 +17,8 @@ namespace OnlineRestaurant.Models
         public virtual DbSet<Dessert> Dessert { get; set; }
         public virtual DbSet<Dishes> Dishes { get; set; }
         public virtual DbSet<MainCourse> MainCourse { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Restaurants> Restaurants { get; set; }
         public virtual DbSet<Starter> Starter { get; set; }
 
@@ -94,28 +95,28 @@ namespace OnlineRestaurant.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Order>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.OrderDetailsId).HasColumnName("orderDetailsId");
-
-                entity.Property(e => e.Status)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
             modelBuilder.Entity<OrderDetails>(entity =>
             {
                 entity.ToTable("orderDetails");
 
                 entity.Property(e => e.ItemId).HasColumnName("itemId");
 
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_orderDetails_Orders");
+            });
+
+            modelBuilder.Entity<Orders>(entity =>
+            {
+                entity.Property(e => e.CustomerId).HasColumnName("customerId");
+
                 entity.Property(e => e.OrderDetailsId).HasColumnName("orderDetailsId");
 
-                entity.Property(e => e.Quantity).HasColumnName("quantity");
+                entity.Property(e => e.Status)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Restaurants>(entity =>
